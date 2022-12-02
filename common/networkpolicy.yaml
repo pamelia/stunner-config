@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: stunner-network-policy
+spec:
+# Choose the STUNner pods as source
+  podSelector:
+    matchLabels:
+      app: stunner
+  policyTypes:
+  - Egress
+  egress:
+  # Allow only this rule, everything else is denied
+  - to:
+    # Choose the media server pods as destination
+    - podSelector:
+        matchLabels:
+          app: video-mediasoup-server
+    ports:
+    - protocol: UDP
+      port: 10000
+      endPort: 10010
