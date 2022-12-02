@@ -1,0 +1,12 @@
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: Gateway
+metadata:
+  name: udp-gateway
+  namespace: stunner-dev
+spec:
+  gatewayClassName: stunner-dev
+  listeners:
+    - name: udp-listener
+      port: 3478
+      protocol: UDP

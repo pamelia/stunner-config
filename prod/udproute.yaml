@@ -1,0 +1,13 @@
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: UDPRoute
+metadata:
+  name: video-mediasoup-server
+  namespace: stunner-prod
+spec:
+  parentRefs:
+    - name: udp-gateway
+  rules:
+    - backendRefs:
+        - name: video-mediasoup-server
+          namespace: vidicue-prod
